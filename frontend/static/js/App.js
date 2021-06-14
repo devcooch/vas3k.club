@@ -1,6 +1,7 @@
 import twemoji from "twemoji";
 import EasyMDE from "easymde";
 import Lightense from "lightense-images";
+import jSuites from "jSuites";
 
 import "./inline-attachment";
 import "./codemirror-4.inline-attachment";
@@ -224,6 +225,17 @@ const App = {
 
         allEditors.forEach((editor) => {
             editor.element.form.addEventListener("keydown", (e) => {
+                const isUserSlugKey = event.key === "@";
+                if (isUserSlugKey) {
+                    jSuites.dropdown(gocument.getElementById('mention-dropdown'), {
+                        data: [
+                            'vas3k',
+                            'lena',
+                            'Maximus',
+                        ],
+                    });
+                    return;
+                }
                 const isEnter = event.key === "Enter";
                 const isCtrlOrCmd = event.ctrlKey || event.metaKey;
                 const isEnterAndCmd = isEnter && isCtrlOrCmd;
